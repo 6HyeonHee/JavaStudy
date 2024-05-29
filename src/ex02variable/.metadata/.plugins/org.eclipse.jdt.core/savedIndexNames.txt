@@ -1,0 +1,1 @@
+INDEX VERSION 1.134+C:\02Workspaces\01JAVA\JavaStudy\src\ex02variable\.metadata\.plugins\org.eclipse.jdt.core
