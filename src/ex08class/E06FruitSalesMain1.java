@@ -63,6 +63,11 @@ public class E06FruitSalesMain1 {
 	
 	public static void main(String[] args) {
 		
+		/*
+		 판매자와 구매자의 인스턴스를 생성한다. 여기서는 우리가 생성자를
+		 만들지 않았으므로 자동으로 생성되는 디폴트 생성자를 통해 인스턴스를 생성한다.
+		 */
+		
 		FruitSeller seller = new FruitSeller();
 		FruitBuyer buyer = new FruitBuyer();
 		
@@ -70,6 +75,7 @@ public class E06FruitSalesMain1 {
 		seller.showSaleResult();
 		buyer.showBuyResult();
 		
+		// 구매자가 판매자에게 5000원을 지불하고 사과를 구매한다.
 		buyer.buyApple(seller, 5000);
 		
 		System.out.println("구매행위가 일어난 후의 상태");
