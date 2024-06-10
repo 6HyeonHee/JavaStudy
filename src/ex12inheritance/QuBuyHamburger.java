@@ -38,6 +38,7 @@ class HamburgerPrice {
 	// 멤버변수
 	/* 햄버거 종류, 음료, 프렌치 프라이 */
 	Burger burger;
+	// 값이 변할일이 없기 때문에 상수(고정값)형태로 만들어줌.
 	final int COKE = 1000;
 	final int POTATO = 1500;
 	

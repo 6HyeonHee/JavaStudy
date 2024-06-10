@@ -10,8 +10,8 @@ class ChildProperty {
 	
 	public void obtainBead(ChildProperty other, int a) {
 		// 한명은 플러스 한명은 마이너스
-		marbles += a;
-		// other : 당사자 말고 다른 어린이를 말함
+		this.marbles += a;
+		// other : 당사자 말고 다른 어린이를 말함 => 내가 지정
 		other.marbles -= a;
 	}
 	

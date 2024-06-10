@@ -7,23 +7,25 @@ class Point {
 		yDot = y;
 	}
 	public void showPointInfo() {
-		System.out.println("[x좌표 : " + xDot + ", y좌표 : " + yDot + "]");
+		System.out.println("[x좌표:" + xDot + ", y좌표:" + yDot + "]");
 	}
 }
 
 // Point 클래스를 기반으로 원(Circle) 클래스 표현하기
 class Circle {
 	// 멤버변수
-	int radius;
+	int radian; // 반지름
 	Point center;
 	
 	public Circle(int x, int y, int r) {
 		center = new Point(x,y);
-		radius = r; 
+		this.radian = r; 
 	}
 	
 	public void showCircleInfo() {
-		System.out.println("반지름 : " + radius);
+		// 반지름을 출력한다.
+		System.out.println("반지름:" + radian);
+		// 포인트 정보를 출력한다.
 		center.showPointInfo();
 	}
 }
