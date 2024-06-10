@@ -46,6 +46,7 @@ class HamburgerPrice {
 	public HamburgerPrice(Burger b) {
 		this.burger = b;
 	}
+
 	public void showPrice(boolean includeCoke, boolean includePotato) {
 		
 	}
