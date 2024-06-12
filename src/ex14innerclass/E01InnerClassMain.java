@@ -37,7 +37,8 @@ class Unit {
 		// 내부 클래스도 일반 클래스와 동일하게 멤버를 정의할 수 있다.
 		int attackPower;
 		/*
-		 내부 클래스에서는 (놓쳤다..)
+		 내부 클래스에서는 외부 클래스의 모든 멤버에 접근할 수 있다.
+        외부 클래스가 더 넓은 지역이기 때문이다.
 		 */
 		public void attack() {
 			System.out.println(infoStr() + "\n마린이 공격한다.");
