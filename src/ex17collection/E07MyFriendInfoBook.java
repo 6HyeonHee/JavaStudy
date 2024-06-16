@@ -160,41 +160,45 @@ class FriendInfoHandler {
 		System.out.print("\n검색할 이름을 입력하세요. => ");
 		String searchName = scan.nextLine();
 		
-		// 이터레이터 인스턴스 생성
-		Iterator<Friend> itr = lists.iterator();
-		while(itr.hasNext()) {
-			// 저장된 인스턴스 인출
-			Friend fr = itr.next();
-			// 우리가 입력한 이름과 일치하는지 확인
-			if(searchName.compareTo(fr.name)==0) {
-				// 일치하면 정보를 출력한다.
-				fr.showAllData();
-				System.out.println("** 귀하가 요청하는 정보를 찾았습니다. **");
-				isFind = true;
-			}
-		}
+		// 일반 for문을 통해 이름 검색
+		for (int i = 0; i < lists.size(); i++) {
+            // 저장된 인스턴스 인출
+            Friend fr = lists.get(i);
+            // 우리가 입력한 이름과 일치하는지 확인
+            if (searchName.compareTo(fr.name) == 0) {
+                // 일치하면 정보를 출력한다.
+                fr.showAllData();
+                System.out.println("** 귀하가 요청하는 정보를 찾았습니다. **");
+                isFind = true;
+                break; // 일치하는 정보를 찾으면 더 이상 반복할 필요 없음
+            }
+        }
+		
 		if (isFind == false) {
 			System.out.println("*** 찾는 정보가 없습니다. ***");
 		}
 	}
 	
+	
 	public void deleteInfo() {
 		Scanner scan = new Scanner(System.in);
 		System.out.print("\n삭제할 이름을 입력하세요. => ");
 		String deleteName = scan.nextLine();
+
+		boolean isDeleted = false;
 		
-		int deleteIndex = -1;
-		// 확장 for문을 통해 반복하여 삭제할 이름을 검색한다.
-		for (Friend fr : lists) {
-			if (deleteName.compareTo(fr.name) == 0) {
-				// 이름이 일치하면 삭제 처리한다.
-				lists.remove(fr);
-				deleteIndex = 1;
-				break;
-			}
-		}
+	    Iterator<Friend> itr = lists.iterator();
+	        
+	    while (itr.hasNext()) {
+	        Friend fr = itr.next();
+	        if (deleteName.compareTo(fr.name) == 0) {
+	            itr.remove();
+	            isDeleted = true;
+             break;
+             }
+        }
 		
-		if (deleteIndex == -1) {
+		if (isDeleted == false) {
 			System.out.println("=== 삭제된 데이터가 없습니다. ===");
 		}
 		else {
