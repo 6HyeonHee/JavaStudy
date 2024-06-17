@@ -7,14 +7,14 @@ import java.util.Scanner;
 단지 기본 정보를 저장하고 상속을 목적으로 정의된 클래스이다.
 이와 같이 데이터를 저장하기 위한 용도의 클래스를 VO(Value Object)라고 한다.
 즉, 값만 가진 객체라는 뜻이다. */
-class Friend {
+class FriendT {
 	// 멤버변수: 이름, 전화번호, 주소 기본 정보 3가지를 저장한다.
 	String name;
 	String phone;
 	String addr;
 	
 	// 생성자: 멤버변수를 초기화한다. 멤버 구분을 위한 this를 사용한다.
-	public Friend(String name, String phone, String addr) {
+	public FriendT(String name, String phone, String addr) {
 		this.name = name;
 		this.phone = phone;
 		this.addr = addr;
@@ -31,12 +31,12 @@ class Friend {
 }
 
 // 고등학교 친구의 정보를 저장하기 위한 자식 클래스
-class HighFriend extends Friend {
+class HighFriendT extends FriendT {
 	// 확장한 멤버변수: 별명
 	String nickname;
 	
 	// 생성자: 부모의 생성자를 먼저 호출한 후 멤버변수를 초기화한다.
-	public HighFriend(String name, String phone, String addr, String nickname) {
+	public HighFriendT(String name, String phone, String addr, String nickname) {
 		super(name, phone, addr);
 		this.nickname = nickname;
 	}
@@ -59,12 +59,12 @@ class HighFriend extends Friend {
 }
 
 // 대학교 친구의 정보를 저장하기 위한 자식 클래스
-class UnivFriend extends Friend {
+class UnivFriendT extends FriendT {
 	// 확장한 멤버변수로 전공을 표현한다.
 	String major;
 	
 	// 생성자
-	public UnivFriend(String name, String phone, String addr, String major) {
+	public UnivFriendT(String name, String phone, String addr, String major) {
 		super(name, phone, addr);
 		this.major = major;
 	}
@@ -85,21 +85,21 @@ class UnivFriend extends Friend {
 
 /* 해당 프로그램에서 기능을 담당하는 클래스로
 '핸들러' 혹은 '매니져' 클래스라고 부른다. */
-class FriendInfoHandler {
+class FriendInfoHandlerT {
 	/* 멤버변수 1
 	: 상속 관계에서 부모 클래스로 인스턴스 배열을 생성한다.
 	부모로 자식을 참조할 수 있으므로
 	부모 타입의 배열에는 자식 타입의 인스턴스를 모두 저장할 수 있다. */
-	private Friend[] myFriends;
+	private FriendT[] myFriends;
 	/* 멤버변수 2
 	: 배열에 저장된 연락처 정보를 카운트 하기 위한 변수로
 	추가할 때마다 ++(증가 연산자)로 1씩 증가시킨다. */
 	private int numOfFriends;
 	
 	// 생성자 
-	public FriendInfoHandler(int num) {
+	public FriendInfoHandlerT(int num) {
 		// 정보 저장을 위한 인스턴스 배열을 생성한다.
-		myFriends = new Friend[num];
+		myFriends = new FriendT[num];
 		// 배열의 인덱스는 0부터 시작이므로 이와 같이 초기화한다.
 		numOfFriends = 0;
 	}
@@ -123,7 +123,7 @@ class FriendInfoHandler {
 			System.out.print("별명: ");
 			iNickname = scan.nextLine();
 			// High 인스턴스를 생성한다.
-			HighFriend high = new HighFriend(iName, iPhone, iAddr, iNickname);
+			HighFriendT high = new HighFriendT(iName, iPhone, iAddr, iNickname);
 			// Friend 타입의 인스턴스 배열에 추가한다.
 			myFriends[numOfFriends++] = high;
 			/* 인덱스로 사용된 변수의 초기값이 0이므로 0번 인덱스에 추가된 후 1 증가한다.
@@ -134,7 +134,7 @@ class FriendInfoHandler {
 			System.out.print("전공: ");
 			iMajor = scan.nextLine();
 			// 인스턴스 생성과 동시에 배열에 추가한다.
-			myFriends[numOfFriends++] = new UnivFriend(iName, iPhone, iAddr, iMajor);
+			myFriends[numOfFriends++] = new UnivFriendT(iName, iPhone, iAddr, iMajor);
 		}
 		System.out.println("\n=== 친구 정보 입력이 완료되었습니다. ===\n");
 	}
@@ -251,7 +251,7 @@ class FriendInfoHandler {
 }
 
 // 메인 클래스
-public class E07MyFriendInfoBook {
+public class QuMyFriendInfoBookT {
 	/* 메뉴를 출력하는 용도의 메서드로 매개변수, 반환 타입이 없는 형태로 정의한다.
 	main 메서드에서 직접 호출하기 위해 static으로 선언되어 있다. */
 	public static void menuShow() {
@@ -274,7 +274,7 @@ public class E07MyFriendInfoBook {
 		Scanner scan = new Scanner(System.in);
 		
 		// 기능을 담당하는 핸들러 클래스의 인스턴스 생성
-		FriendInfoHandler handler = new FriendInfoHandler(100);
+		FriendInfoHandlerT handlerT = new FriendInfoHandlerT(100);
 		
 		/* 무한 루프로 사용자가 원할 때 종료할 수 있는 구조를 만들어 준다.
 		break문은 반복문을 탈출 시키는 기능이 있으므로 이와 같은 무한 루프에서 자주 사용된다.
@@ -282,43 +282,40 @@ public class E07MyFriendInfoBook {
 		for (;;) => 이를 통해 무한 루프를 구현할 수 있으나
 		반복의 횟수가 명확하지 않은 경우에는 주로 while문을 사용한다. */
 		while (true) {
-			// 1. 메뉴를 출력한다.
-			menuShow();
-			
 			try {
+				// 1. 메뉴를 출력한다.
+				menuShow();
+				
 				// 2. 사용자로부터 수행할 기능의 메뉴를 입력 받는다.
 				int choice = scan.nextInt();
 				
 				// 3. switch문을 통해 선택한 번호에 따라 메서드를 호출한다.
 				switch (choice) {
 				case 1: case 2:
-					handler.addFriend(choice);
+					handlerT.addFriend(choice);
 					break;
 				case 3:
-					handler.showAllData();
+					handlerT.showAllData();
 					break;
 				case 4:
-					handler.showSimpleData();
+					handlerT.showSimpleData();
 					break;
 				case 5:
-					handler.searchInfo();
+					handlerT.searchInfo();
 					break;
 				case 6:
-					handler.deleteInfo();
+					handlerT.deleteInfo();
 					break;
 				case 7:
 					System.out.println("\n=== 프로그램 종료 ===");
 					// main 메서드가 종료된다는 것은 프로그램 전체의 종료로 이어진다.
 					return;
 				}	// switch 끝
-				
 			} catch (InputMismatchException e) {
-				System.out.println("정수를 입력해야 합니다. 다시 시도하세요.");
-                scan.nextLine();
+				System.out.println("예외발생:메뉴는 정수로만 입력하세요");
+				// 버퍼에 남아있는 엔터키(문자)를 제거한다.
+				scan.nextLine();
 			}
-			
-		}// while 끝
-		
+		}	// while 끝
 	}	// main 끝
-
 }	// class 끝
