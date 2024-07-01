@@ -29,7 +29,8 @@ public class SQLupdate extends MyConnection{
 			result = stmt.executeUpdate(query);
 			System.out.println("[stmt]" + result +"행 업데이트 됨");
 			
-			//////////////////////////////////////
+			//////////////////
+			////////////////////
 			
 			// 인파라미터가 있는 동적쿼리문 작성
 			query = "UPDATE member "
